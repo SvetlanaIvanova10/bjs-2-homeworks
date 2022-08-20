@@ -10,8 +10,7 @@ function getArrayParams(arr) {
     }
     sum += arr[i];
   }
-  avg = sum / arr.length;
-  avg = Number(avg.toFixed(2));
+  avg = Number((sum / arr.length).toFixed(2));
   return { min: min, max: max, avg: avg };
 }
 
@@ -38,6 +37,5 @@ function makeWork(arrOfArr, func) {
 // Задание 3
 function worker2(arr) {
   let param = getArrayParams(arr);
-  let delta =  Math.abs(param.max - param.min);
-  return delta;
+  return Math.abs(param.max - param.min);
 }
