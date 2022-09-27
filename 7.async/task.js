@@ -27,17 +27,15 @@ class AlarmClock {
     }
 
     start() {
-        setInterval( () => {
-            if (this.timerId === null) {
-                this.timerId = setInterval(() => {
-                    this.alarmCollection.forEach((alarm) => {
-                        if (this.getCurrentFormattedTime() === alarm.time) {
-                            alarm.callback();
-                        }
-                    })
+        if (this.timerId === null) {
+            this.timerId = setInterval(() => {
+                this.alarmCollection.forEach((alarm) => {
+                    if (this.getCurrentFormattedTime() === alarm.time) {
+                        alarm.callback();
+                    }
                 })
-            }
-        })
+            })
+        }
     }
 
 
