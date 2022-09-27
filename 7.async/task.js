@@ -12,13 +12,13 @@ class AlarmClock {
         if(this.alarmCollection.some(alarm => alarm.id === id)) {
             console.error("Будильник с таким id уже существует.");
         } else {
-            this.alarmCollection.push({id: id, time: time, callback: callback});
+            this.alarmCollection.push({id, time, callback});
         }
     }
 
     removeClock(id) {
         const countAlarm = this.alarmCollection.length;
-        this.alarmCollection.filter(alarm => alarm.id != id);
+        this.alarmCollection = this.alarmCollection.filter(alarm => alarm.id != id);
         return countAlarm != this.alarmCollection.length;
     }
 
@@ -37,7 +37,6 @@ class AlarmClock {
             })
         }
     }
-
 
     stop() {
         if (this.timerId != null) {
@@ -64,11 +63,9 @@ let phoneAlarm = new AlarmClock();
 phoneAlarm.getCurrentFormattedTime();
 phoneAlarm.addClock("22:13", () => console.log("Пора вставать"), 1);
 phoneAlarm.addClock("22:14", () => {console.log("Давай вставай уже!"); phoneAlarm.removeClock(2)}, 2);
-phoneAlarm.addClock("09:01", () => console.log("Иди умываться"));
 phoneAlarm.addClock("22:14", () => {console.log("Вставай, а то проспишь!");
                                     phoneAlarm.clearAlarms();
                                     phoneAlarm.printAlarms();
                                     }, 3);
-phoneAlarm.addClock("21:46", () => console.log("Вставай, а то проспишь!"), 1);
 phoneAlarm.printAlarms();
 phoneAlarm.start();
